@@ -1,0 +1,61 @@
+.zone-status {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  width: 100%; /* full chiều ngang */
+  max-width: 600px; /* optional: giới hạn rộng tối đa */
+  box-sizing: border-box;
+  margin-top: 0; /* nếu cần khoảng cách với header */
+}
+
+.zone-status h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.zone-card {
+  margin-bottom: 15px;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background: #f9f9f9;
+}
+
+.zone-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.progress-bar-bg {
+  background: #e0e0e0;
+  height: 12px;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #1a73e8;
+  border-radius: 6px;
+}
+
+.zone-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.dashboard-lower {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.recent-activity, .zone-status {
+  flex: 1;  /* cả 2 bằng nhau */
+}

@@ -1,0 +1,48 @@
+.vehicle-entry-form h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-icon input,
+.vehicle-entry-form select {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.capture-btn {
+  background-color: #f0f0f0;
+  color: #444;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.capture-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.register-btn {
+  background-color: #1a2de6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background-color: #0f1ecc;
+}

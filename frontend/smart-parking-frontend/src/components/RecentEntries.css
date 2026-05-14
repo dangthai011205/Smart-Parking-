@@ -1,0 +1,85 @@
+.recent-entries {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  flex: 2; /* chiếm 2 phần so với form */
+  max-height: 500px; /* scroll nếu nhiều ticket */
+  overflow-y: auto;
+}
+
+.recent-entries h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.recent-entries ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recent-entries li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: #f8fdf8; /* màu xanh nhạt */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.recent-entries li .left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.recent-entries li .plate {
+  font-weight: 600;
+}
+
+.recent-entries li .details {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.recent-entries li .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.recent-entries li .status {
+  background: #d4f5d4;
+  color: #2d8f2d;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+.recent-entries li .time {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.recent-entries li .exit-btn {
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  background-color: #1a2de6;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.recent-entries li .exit-btn:hover {
+  background-color: #0f1ecc;
+}

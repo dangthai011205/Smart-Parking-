@@ -1,0 +1,130 @@
+@startuml Smart Parking System - ER Diagram
+
+skinparam backgroundColor #1E1E2E
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+skinparam entity {
+  BackgroundColor #0D2137
+  BorderColor #4FC3F7
+  FontColor #E0F7FA
+  BorderThickness 2
+}
+
+skinparam ArrowColor #90A4AE
+skinparam ArrowFontColor #CFD8DC
+skinparam ArrowFontSize 9
+
+' ============= ENTITIES =============
+
+entity "User" as user {
+  * user_id       : INT           <<PK>>
+  --
+  * username      : VARCHAR(50)
+  * password_hash : VARCHAR(255)
+  * full_name     : VARCHAR(100)
+  * email         : VARCHAR(100)
+  * role          : ENUM(admin, operator, member)
+  * status        : ENUM(active, inactive)
+    created_at    : TIMESTAMP
+}
+
+entity "ParkingZone" as zone {
+  * zone_id       : INT           <<PK>>
+  --
+  * zone_name     : VARCHAR(10)
+  * total_capacity      : INT
+    current_occupancy   : INT
+    distance_from_entrance : FLOAT
+}
+
+entity "ParkingSlot" as slot {
+  * slot_id       : INT           <<PK>>
+  --
+  * zone_id       : INT           <<FK>>
+  * slot_code     : VARCHAR(10)
+  * is_occupied   : BOOLEAN
+    last_updated  : TIMESTAMP
+}
+
+entity "Vehicle" as vehicle {
+  * vehicle_id    : INT           <<PK>>
+  --
+  * license_plate : VARCHAR(20)
+  * vehicle_type  : ENUM(car, motorcycle, truck)
+    owner_id      : INT           <<FK, nullable>>
+    registered_at : TIMESTAMP
+}
+
+entity "ParkingTicket" as ticket {
+  * ticket_id     : INT           <<PK>>
+  --
+  * vehicle_id    : INT           <<FK>>
+  * slot_id       : INT           <<FK>>
+    user_id       : INT           <<FK, nullable>>
+  * enter_time    : TIMESTAMP
+    exit_time     : TIMESTAMP
+  * status        : ENUM(active, completed, lost)
+  * is_temporary  : BOOLEAN
+}
+
+entity "Payment" as payment {
+  * payment_id    : INT           <<PK>>
+  --
+  * ticket_id     : INT           <<FK>>
+  * amount        : DECIMAL(10,2)
+  * payment_time  : TIMESTAMP
+  * status        : ENUM(pending, completed, failed)
+    bkpay_txn_id  : VARCHAR(100)
+}
+
+entity "PricingPolicy" as pricing {
+  * policy_id        : INT           <<PK>>
+  --
+  * vehicle_type     : ENUM(car, motorcycle, truck)
+  * base_rate        : DECIMAL(10,2)
+  * additional_rate  : DECIMAL(10,2)
+    daily_max_cap    : DECIMAL(10,2)
+  * effective_from   : DATE
+    effective_to     : DATE
+}
+
+entity "AccessLog" as log {
+  * log_id        : INT           <<PK>>
+  --
+    user_id       : INT           <<FK, nullable>>
+    ticket_id     : INT           <<FK, nullable>>
+  * action        : ENUM(enter, exit, reject, lost_card)
+  * timestamp     : TIMESTAMP
+    details       : TEXT
+}
+
+entity "ParkingPrivilege" as privilege {
+  * privilege_id  : INT           <<PK>>
+  --
+  * role          : ENUM(admin, operator, member)
+  * zone_id       : INT           <<FK>>
+  * allowed_vehicle_types : VARCHAR(100)
+  * is_active     : BOOLEAN
+    updated_by    : INT           <<FK>>
+}
+
+' ============= RELATIONSHIPS =============
+
+user    ||--o{  vehicle   : "owns (0..*)"
+user    ||--o{  ticket    : "creates (0..*)"
+user    ||--o{  log       : "triggers (0..*)"
+
+zone    ||--|{  slot      : "contains (1..*)"
+zone    ||--o{  privilege : "applies to (0..*)"
+
+slot    ||--o{  ticket    : "assigned to (0..*)"
+
+vehicle ||--|{  ticket    : "used in (1..*)"
+
+ticket  ||--o|  payment   : "has (0..1)"
+ticket  ||--o{  log       : "logged in (0..*)"
+
+user    ||--o{  privilege : "managed by admin"
+
+@enduml

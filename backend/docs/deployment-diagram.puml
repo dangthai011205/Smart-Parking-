@@ -1,0 +1,97 @@
+@startuml Smart Parking System - Deployment Diagram
+
+skinparam backgroundColor #1E1E2E
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+skinparam node {
+  BackgroundColor #0D2137
+  BorderColor #4FC3F7
+  FontColor #E0F7FA
+  FontStyle bold
+  BorderThickness 2
+}
+
+skinparam component {
+  BackgroundColor #1A3A1A
+  BorderColor #69F0AE
+  FontColor #E8F5E9
+  BorderThickness 1.5
+}
+
+skinparam database {
+  BackgroundColor #1A1A3E
+  BorderColor #CE93D8
+  FontColor #F3E5F5
+  BorderThickness 2
+}
+
+skinparam cloud {
+  BackgroundColor #2D1515
+  BorderColor #EF9A9A
+  FontColor #FFEBEE
+}
+
+skinparam ArrowColor #90A4AE
+skinparam ArrowFontColor #CFD8DC
+skinparam ArrowFontSize 9
+skinparam ArrowThickness 1.5
+
+' ========== CLIENT LAYER ==========
+node "User Device\n<<Browser / Mobile>>" as client {
+  component "Frontend App\n[Vite + React]\n:5173" as frontend
+}
+
+' ========== APPLICATION SERVER ==========
+node "Application Server\n<<Node.js : Ubuntu Server>>" as app_server {
+
+  component "Express REST API\n:5000" as api {
+    component [Auth Routes\n/api/auth] as auth_r
+    component [Parking Routes\n/api/parking] as park_r
+    component [Operator Routes\n/api/operator] as op_r
+    component [Admin Routes\n/api/admin] as admin_r
+    component [Guidance Routes\n/api/guidance] as guide_r
+    component [Dashboard Routes\n/api/dashboard] as dash_r
+  }
+
+  component "Service Layer" as services {
+    component [SSO Service] as sso_svc
+    component [Pricing Service] as price_svc
+    component [BKPay Service] as bkpay_svc
+  }
+
+  database "Application Database\n<<PostgreSQL>>\nUsers | Slots | Tickets\nPayments | Logs | Pricing" as db
+}
+
+' ========== IoT LAYER ==========
+node "IoT Infrastructure\n<<On-Premise>>" as iot_node {
+  component [Parking Sensors\n(Zone A / Zone B)] as sensors
+  component [IoT Gateway] as iot_gw
+}
+
+' ========== GUIDANCE DISPLAY ==========
+node "Guidance Display\n<<Digital Signage>>" as display_node {
+  component [Parking Info Board] as board
+}
+
+' ========== EXTERNAL SYSTEMS ==========
+cloud "HCMUT University Systems" as hcmut_cloud {
+  node "HCMUT_SSO\nServer" as sso_server
+  node "HCMUT_DATACORE\nServer" as datacore_server
+}
+
+cloud "Payment Infrastructure" as payment_cloud {
+  node "BKPay\nGateway" as bkpay_server
+}
+
+' ========== CONNECTIONS ==========
+frontend     -right->  api             : HTTP/REST\n(JSON, CORS)
+api          -down->   db              : SQL / ORM\n(read / write)
+sso_svc      -right->  sso_server      : HTTPS\nSSO API
+sso_svc      -right->  datacore_server : HTTPS\nDATACORE API
+bkpay_svc    -right->  bkpay_server    : HTTPS\nPayment API
+sensors      -up->     iot_gw          : MQTT / Serial
+iot_gw       -up->     api             : HTTP / WebSocket\nSlot Status Data
+api          -down->   board           : HTTP\nDisplay Commands
+
+@enduml

@@ -1,0 +1,39 @@
+.zone-status-card {
+  background: #f0fff4;
+  border: 2px solid #3ac47d;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.zone-status-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.zone-status-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.progress-bg {
+  background-color: #eee;
+  height: 10px;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.progress-bar {
+  height: 10px;
+  border-radius: 8px;
+  background-color: #3ac47d;
+}

@@ -1,0 +1,132 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  overflow-y: auto;
+}
+
+.dashboard-main h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 1.5rem;
+}
+
+.overview-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.dashboard-lower {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Recent Activity */
+.recent-activity {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  min-width: 240px;
+  flex: 1;
+}
+
+.recent-activity h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a7fe0;
+}
+
+.recent-activity ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recent-activity li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  font-size: 0.88rem;
+}
+
+.recent-activity .vehicle { font-weight: 600; }
+.recent-activity .zone { font-size: 0.85rem; color: #666; }
+.recent-activity .slot { font-size: 0.85rem; color: #666; }
+.recent-activity .status { font-weight: 500; }
+.recent-activity .status.Active { color: #3ac47d; }
+.recent-activity .status.Exit { color: #e74c3c; }
+
+/* Zone Status */
+.zone-status-container {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  flex: 1;
+  min-width: 280px;
+}
+
+.zone-status-container h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a7fe0;
+}
+
+.zone-card {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.zone-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.progress-bar-bg {
+  background: #e8e8e8;
+  height: 10px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #1a7fe0;
+  border-radius: 5px;
+  transition: width 0.3s;
+}
+
+.zone-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #666;
+}

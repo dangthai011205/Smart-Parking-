@@ -1,0 +1,39 @@
+.overview-card {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  min-width: 160px;
+}
+
+.overview-card .card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.overview-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a7fe0;
+}
+
+.card-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+}
+
+.card-subtitle {
+  color: #888;
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0;
+}
+
+.overview-card.blue { border-top: 3px solid #1a7fe0; }
+.overview-card.orange { border-top: 3px solid #ff8c42; }
+.overview-card.green { border-top: 3px solid #3ac47d; }
+.overview-card.purple { border-top: 3px solid #8e44ad; }
